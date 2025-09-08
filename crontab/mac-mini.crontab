@@ -2,14 +2,6 @@
 # mac-mini.crontab
 #
 # This file is used to backup my mac mini m2 to my NAS.
-#
-# HOST_NAS: nas.internal.pingolabs.cl
-# PASSWORD_FILE: $HOME/.rsync/nas.internal.pingolabs.com.password
 # ##############################################################################
 
-# Backup photos library
-00 11 * * * /opt/homebrew/bin/rsync --password-file=$HOME/.rsync/nas.internal.pingolabs.com.password -avP --delete --log-file="$HOME/Library/Logs/crontab-rsync-pictures-$(date +\%Y-\%m-\%d-\%H\%M\%S).log" $HOME/Pictures rsync@nas.internal.pingolabs.cl::Ignacio\ Olave/ >> $HOME/Library/Logs/crontab-rsync-pictures-$(date +\%Y-\%m-\%d-\%H\%M\%S).log
-
-# backup cubase project files
-10 11 * * * /opt/homebrew/bin/rsync --password-file=$HOME/.rsync/nas.internal.pingolabs.com.password -avP --log-file="$HOME/Library/Logs/crontab-rsync-cubase-$(date +\%Y-\%m-\%d-\%H\%M\%S).log" $HOME/Music/cubase rsync@nas.internal.pingolabs.cl::Ignacio\ Olave/Backup/ >> $HOME/Library/Logs/crontab-rsync-cubase-$(date +\%Y-\%m-\%d-\%H\%M\%S).log
-
+00 10 * * * ssh iolave@127.0.0.1 "/opt/iolave/bin/crontab-backup.sh"

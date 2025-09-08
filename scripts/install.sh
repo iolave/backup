@@ -6,6 +6,7 @@ function info() {
 
 function error() {
 	echo "[ERROR] $@"
+	exit 1
 }
 
 # THIS REPO PATH
@@ -29,10 +30,20 @@ done
 # if BASE is empty, exit
 if [ -z "$BASE" ]; then
 	error "no valid crontab config selected"
-	exit 1
 fi
 
 # INSTALL THE CRONTAB
-echo "INFO: Installing crontab config"
+info "installing crontab config"
 sudo crontab -u $(whoami) $ROOT/crontab/${BASE}.crontab
+
+if [ -f $ROOT/crontab/${BASE}.sh ]; then
+	info "installing backup script"
+
+	if [ ! -d "/opt/iolave/bin" ]; then
+		sudo mkdir -p /opt/iolave/bin
+	fi
+
+	sudo chown -R $(whoami) /opt/iolave/bin
+	cp $ROOT/crontab/${BASE}.sh /opt/iolave/bin/crontab-backup.sh
+fi
 
