@@ -20,7 +20,7 @@ mkdir -p $HOME/Library/Logs/rsync
 	rsync@nas.internal.pingolabs.cl::Ignacio\ Olave/
 
 # backup cubase project files
-/opt/homebrew/bin/rsync -avP --delete \
+/opt/homebrew/bin/rsync -avP \
 	--password-file=$HOME/.rsync/nas.internal.pingolabs.com.password \
 	--log-file="$HOME/Library/Logs/rsync/cubase-$DATE.log" \
 	$HOME/Music/cubase \
