@@ -39,11 +39,12 @@ sudo crontab -u $(whoami) $ROOT/crontab/${BASE}.crontab
 if [ -f $ROOT/crontab/${BASE}.sh ]; then
 	info "installing backup script"
 
-	if [ ! -d "/opt/iolave/bin" ]; then
-		sudo mkdir -p /opt/iolave/bin
+	if [ ! -d "/opt/iolave" ]; then
+		sudo mkdir -p /opt/iolave
 	fi
 
-	sudo chown -R $(whoami) /opt/iolave/bin
-	cp $ROOT/crontab/${BASE}.sh /opt/iolave/bin/crontab-backup.sh
+	sudo chown -R $(whoami) /opt/iolave
+	cp $ROOT/crontab/${BASE}.sh /opt/iolave/crontab-backup.sh
+	chmod +x /opt/iolave/crontab-backup.sh
 fi
 

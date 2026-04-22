@@ -4,4 +4,4 @@
 # This file is used to backup my mac mini m2 to my NAS.
 # ##############################################################################
 
-00 10 * * * ssh iolave@127.0.0.1 "/opt/iolave/bin/crontab-backup.sh"
+00 10 * * * ssh iolave@127.0.0.1 "/opt/iolave/crontab-backup.sh"
